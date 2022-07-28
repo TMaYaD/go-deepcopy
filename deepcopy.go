@@ -40,6 +40,10 @@ func Register(kind Kind, copier copier) {
 	copiers[kind] = copier
 }
 
+func MustClone[T any](old T) T {
+	return MustAnything(old).(T)
+}
+
 // MustAnything does a deep copy and panics on any errors.
 func MustAnything(x interface{}) interface{} {
 	dc, err := Anything(x)
